@@ -25,8 +25,8 @@
 					Capturing Moments in Time
 				</h1>
 				<p class="text-lg md:text-xl max-w-2xl">
-					A collection of film photography exploring the beauty of everyday life
-					through analog perspectives.
+					A collection of film photography exploring the time and space of life
+					through my analog perspectives.
 				</p>
 			</div>
 		</div>

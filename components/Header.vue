@@ -4,16 +4,11 @@
 			class="p-4 px-6 mx-auto max-w-7xl rounded-3xl md:flex md:justify-between md:items-center shadow-xl bg-white/95 backdrop-blur-sm relative"
 			aria-label="Main navigation"
 		>
-			<div class="flex items-center justify-between">
+			<div class="flex items-center justify-between md:hidden">
 				<NuxtLink to="/" class="flex items-center" aria-label="Go to homepage">
-					<img
-						src="/"
-						class="h-14 w-auto transition-transform duration-300 hover:scale-105"
-						alt="iDrew Logo"
-					/>
+					<p class="text-2xl font-bold text-gray-600">idrewfilm</p>
 				</NuxtLink>
 
-				<!-- Mobile menu button -->
 				<button
 					type="button"
 					class="text-gray-900 focus:outline-none rounded md:hidden"
@@ -33,40 +28,41 @@
 				</button>
 			</div>
 
-			<!-- Desktop Navigation -->
-			<div
-				id="main-navigation"
-				class="hidden md:flex md:flex-row md:items-center md:gap-6 md:mt-0"
-			>
-				<NuxtLink
-					v-for="link in navigationLinks"
-					:key="link.to"
-					:to="link.to"
-					class="text-gray-500 transition-colors duration-300"
-				>
-					{{ link.label }}
+			<div class="hidden md:flex md:flex-1 md:items-center md:justify-between">
+				<div class="flex items-center">
+					<NuxtLink
+						v-for="link in navigationLinks"
+						:key="link.to"
+						:to="link.to"
+						class="text-gray-500 transition-colors duration-300"
+					>
+						{{ link.label }}
+					</NuxtLink>
+				</div>
+
+				<NuxtLink to="/" class="flex items-center" aria-label="Go to homepage">
+					<p class="text-2xl font-bold text-gray-600">idrewfilm</p>
 				</NuxtLink>
 
-				<div class="flex gap-6 items-center">
+				<div class="flex items-center">
 					<a
 						v-for="social in socialLinks"
 						:key="social.url"
 						:href="social.url"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-gray-500"
+						class="text-gray-500 flex items-center justify-center"
 					>
 						<span class="sr-only">{{ social.label }}</span>
 						<Icon
 							:name="social.icon"
-							class="w-6 h-6 transition-colors duration-300"
+							class="w-5 h-5 transition-colors duration-300"
 							aria-hidden="true"
 						/>
 					</a>
 				</div>
 			</div>
 
-			<!-- Mobile Navigation with Transition -->
 			<Transition
 				enter-active-class="transition duration-300 ease-out"
 				enter-from-class="transform -translate-y-4 opacity-0"
@@ -84,7 +80,7 @@
 							v-for="link in navigationLinks"
 							:key="link.to"
 							:to="link.to"
-							class="text-gray-500 transition-colors duration-300 hover:text-orange-400"
+							class="text-gray-500 transition-colors duration-300"
 							@click="closeNavbar"
 						>
 							{{ link.label }}
@@ -101,7 +97,7 @@
 							>
 								<Icon
 									:name="social.icon"
-									class="w-6 h-6 transition-colors duration-300 hover:text-orange-400"
+									class="w-6 h-6 transition-colors duration-300"
 									aria-hidden="true"
 								/>
 								<span>{{ social.label }}</span>
@@ -119,10 +115,7 @@ import { ref } from 'vue';
 
 const showMenu = ref(false);
 
-const navigationLinks = [
-	// { to: '/blog', label: 'Blog' },
-	{ to: '/contact', label: 'Contact' },
-];
+const navigationLinks = [{ to: '/contact', label: 'Contact' }];
 
 const socialLinks = [
 	{
@@ -130,11 +123,6 @@ const socialLinks = [
 		icon: 'mdi:instagram',
 		label: 'Instagram',
 	},
-	// {
-	// 	url: 'https://discord.com/invite/FrEnAhpReY',
-	// 	icon: 'mdi:linkedin',
-	// 	label: 'LinkedIn',
-	// },
 ];
 
 const toggleNavbar = () => (showMenu.value = !showMenu.value);
