@@ -6,7 +6,7 @@
 		>
 			<div class="flex items-center justify-between md:hidden">
 				<NuxtLink to="/" class="flex items-center" aria-label="Go to homepage">
-					<p class="text-2xl font-bold text-gray-600">idrewfilm</p>
+					<p class="text-lg font-bold text-gray-600">idrewfilm</p>
 				</NuxtLink>
 
 				<button
