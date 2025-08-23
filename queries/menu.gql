@@ -1,0 +1,41 @@
+query getMenu {
+	primaryMenu: menuItems(where: { location: PRIMARY }) {
+		nodes {
+			id
+			label
+			url
+			uri # Add this for relative paths
+			parentId
+			order # Add this for proper ordering
+			childItems {
+				nodes {
+					id
+					label
+					url
+					uri
+					order
+				}
+			}
+		}
+	}
+
+	footerMenu: menuItems(where: { location: FOOTER }) {
+		nodes {
+			id
+			label
+			url
+			uri
+			parentId
+			order
+			childItems {
+				nodes {
+					id
+					label
+					url
+					uri
+					order
+				}
+			}
+		}
+	}
+}

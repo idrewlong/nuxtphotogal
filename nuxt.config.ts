@@ -1,7 +1,36 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import tailwindcss from '@tailwindcss/vite';
 export default defineNuxtConfig({
-	compatibilityDate: '2024-11-01',
+	compatibilityDate: '2025-08-22',
 	devtools: { enabled: true },
+	site: {
+		url:
+			process.env.NODE_ENV === 'production'
+				? 'https://idrewfilm.com'
+				: 'http://localhost:3000',
+		name: 'idrewfilm',
+		defaultLocale: 'en',
+		trailingSlash: true,
+	},
+	vite: {
+		plugins: [tailwindcss()],
+	},
+	apollo: {
+		clients: {
+			default: {
+				httpEndpoint:
+					process.env.GRAPHQL_ENDPOINT || 'https://cms.idrewfilm.com/graphql',
+			},
+		},
+	},
+	runtimeConfig: {
+		public: {
+			graphqlEndpoint:
+				process.env.GRAPHQL_ENDPOINT || 'https://cms.idrewfilm.com/graphql',
+			wordpressUrl: process.env.WORDPRESS_URL || 'https://cms.idrewfilm.com',
+		},
+	},
 	gtag: {
 		id: '',
 	},
@@ -11,19 +40,20 @@ export default defineNuxtConfig({
 	css: ['~/assets/css/main.css'],
 	image: {
 		format: ['webp'],
-		domains: [''],
+		domains: ['cms.idrewfilm.com'],
 	},
-	postcss: {
-		plugins: {
-			tailwindcss: {},
-			autoprefixer: {},
+	fonts: {
+		adobe: {
+			id: 'ozb2bpw',
 		},
 	},
+
 	modules: [
-		'@nuxtjs/tailwindcss',
 		'@nuxt/image',
 		'@nuxt/icon',
 		'@nuxt/fonts',
 		'nuxt-gtag',
+		'@nuxtjs/apollo',
+		'@nuxtjs/seo',
 	],
 });

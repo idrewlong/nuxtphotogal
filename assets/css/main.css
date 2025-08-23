@@ -1,20 +1,62 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Add to your global CSS or component style */
 /* .modal-overlay {
 	z-index: 50;
 } */
 
-:root {
-	font-family: 'Geist Mono', serif;
-	font-optical-sizing: auto;
-	font-weight: 400;
-	font-style: normal;
-	@apply bg-zinc-900;
+@import 'tailwindcss';
+
+@theme {
+	--screen-sm: 480px;
+	--screen-md: 768px;
+	--screen-lg: 976px;
+	--screen-xl: 1440px;
 }
 
 html {
 	scroll-behavior: smooth;
+	@apply bg-gray-100;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'miller-banner', serif;
+	font-optical-sizing: auto;
+	font-weight: 700;
+	font-style: normal;
+}
+
+body {
+	font-family: 'miller-banner', serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* @theme {
+  --color-luscogreen: #298730;
+  --color-luscored: #ce2b37;
+  --color-palegray: #b1b1b1;
+  --color-neutralgray: #4f4f4f;
+  --color-cream: #fffbeb;
+} */
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Default styling for scroll bars */
+*::-webkit-scrollbar {
+	/* width: 15px; */
+	@apply w-2 h-2;
+}
+*::-webkit-scrollbar-thumb {
+	@apply bg-gray-300 dark:bg-gray-700 rounded;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }

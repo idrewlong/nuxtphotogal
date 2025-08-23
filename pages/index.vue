@@ -1,6 +1,5 @@
 <template>
 	<main class="min-h-screen relative">
-		<Header />
 		<Hero />
 		<div class="py-8">
 			<div class="mx-auto px-4">

@@ -1,0 +1,6 @@
+schema: schema.graphql
+documents: 'queries/*.gql'
+extensions:
+  endpoints:
+    WPGraphQL:
+      url: https://cms.idrewfilm.com/graphql
