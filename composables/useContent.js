@@ -29,7 +29,10 @@ export const useContent = () => {
 	 */
 	const sanitizeHtml = (html) => {
 		if (!html) return '';
-		return DOMPurify.sanitize(html);
+		return DOMPurify.sanitize(html, {
+			ADD_TAGS: ['iframe'],
+			ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'src'],
+		});
 	};
 
 	/**

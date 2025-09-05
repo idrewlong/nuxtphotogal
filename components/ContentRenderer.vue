@@ -30,8 +30,9 @@ const componentMap = {
 
 <style scoped>
 .content-renderer {
-	color: #78350f; /* amber-900 */
+	color: #1f2937; /* gray-800 */
 	line-height: 1.7;
+	margin: 0 auto;
 }
 
 /* Heading styles with proper spacing */
@@ -39,8 +40,8 @@ const componentMap = {
 	font-size: 2.25rem; /* text-4xl */
 	font-family: serif;
 	font-weight: 700;
-	color: #92400e; /* amber-800 */
-	border-bottom: 2px solid #d97706; /* amber-600 */
+	color: #000000; /* black */
+	border-bottom: 1px solid #e5e7eb; /* gray-200 */
 	padding-bottom: 0.75rem;
 	margin-top: 3rem;
 	margin-bottom: 2rem;
@@ -49,8 +50,9 @@ const componentMap = {
 .content-renderer :deep(h2) {
 	font-size: 1.875rem; /* text-3xl */
 	font-family: serif;
-	font-weight: 600; /* amber-800 */
-	border-bottom: 1px solid #fbbf24; /* amber-400 */
+	font-weight: 600;
+	color: #000000; /* black */
+	border-bottom: 1px solid #e5e7eb; /* gray-200 */
 	padding-bottom: 0.5rem;
 	margin-top: 3rem;
 	margin-bottom: 1.5rem;
@@ -60,7 +62,7 @@ const componentMap = {
 	font-size: 1.5rem; /* text-2xl */
 	font-family: serif;
 	font-weight: 600;
-	color: #92400e; /* amber-800 */
+	color: #000000; /* black */
 	margin-top: 2.5rem;
 	margin-bottom: 1.25rem;
 }
@@ -69,7 +71,7 @@ const componentMap = {
 	font-size: 1.25rem; /* text-xl */
 	font-family: serif;
 	font-weight: 600;
-	color: #92400e; /* amber-800 */
+	color: #000000; /* black */
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 }
@@ -77,7 +79,7 @@ const componentMap = {
 /* Paragraph spacing */
 .content-renderer :deep(p) {
 	margin-bottom: 2rem;
-	text-align: justify;
+	text-align: left;
 	font-size: 1.125rem; /* text-lg */
 	line-height: 1.8;
 }
@@ -105,24 +107,25 @@ const componentMap = {
 
 /* Strong and emphasis */
 .content-renderer :deep(strong) {
-	color: #92400e; /* amber-800 */
+	color: #000000; /* black */
 	font-weight: 600;
 }
 
 .content-renderer :deep(em) {
 	font-style: italic;
-	color: #a16207; /* amber-700 */
+	color: #4b5563; /* gray-600 */
 }
 
 /* Links */
 .content-renderer :deep(a) {
-	color: #dc2626; /* red-600 */
-	text-decoration: underline;
-	transition: color 0.2s ease;
+	color: #000000; /* black */
+	text-decoration: none;
+	border-bottom: 1px solid #9ca3af; /* gray-400 */
+	transition: border-color 0.2s ease;
 }
 
 .content-renderer :deep(a:hover) {
-	color: #b91c1c; /* red-700 */
+	border-bottom-color: #000000; /* black */
 }
 
 /* First paragraph after heading should have less top margin */
@@ -135,6 +138,10 @@ const componentMap = {
 
 /* Responsive typography */
 @media (max-width: 768px) {
+	.content-renderer {
+		padding: 0 1rem; /* Add some padding on smaller screens */
+	}
+
 	.content-renderer :deep(h1) {
 		font-size: 1.875rem; /* text-3xl */
 	}

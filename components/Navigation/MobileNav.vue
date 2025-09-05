@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-white p-4 flex justify-between items-center">
+	<div class="bg-white p-4 flex justify-between items-center nav-font">
 		<!-- Mobile Menu Toggle Button -->
 		<NavigationLogo
 			size="small"
@@ -51,8 +51,11 @@
 					</button>
 				</div>
 
-				<nav class="flex flex-col space-y-4" aria-label="Mobile navigation">
-					<template v-for="link in navigationLinks" :key="link.to">
+				<nav
+					class="flex flex-col space-y-4 uppercase"
+					aria-label="Mobile navigation"
+				>
+					<template v-for="link in internalLinks" :key="link.to">
 						<template v-if="link.children && link.children.length > 0">
 							<button
 								class="flex items-center justify-between text-black w-full py-2 text-lg"
@@ -73,22 +76,13 @@
 									v-for="child in link.children"
 									:key="child.to"
 									:to="child.to"
-									class="block text-gray-600 hover:text-black py-1"
+									class="block text-black py-1"
 									@click="closeNavbar"
 								>
 									{{ child.label }}
 								</NuxtLink>
 							</div>
 						</template>
-						<NuxtLink
-							v-else-if="link.isExternal"
-							:to="link.to"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="flex items-center gap-2 text-black py-2 text-lg"
-						>
-							<Icon name="mdi:instagram" size="24" />
-						</NuxtLink>
 						<NuxtLink
 							v-else
 							:to="link.to"
@@ -99,13 +93,42 @@
 						</NuxtLink>
 					</template>
 				</nav>
+
+				<!-- Social Links & Copyright -->
+				<div class="mt-auto">
+					<div class="flex items-center gap-6">
+						<NuxtLink
+							v-if="instagramLink"
+							:to="instagramLink.to"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-black hover:text-gray-600 transition-colors"
+							aria-label="Instagram"
+						>
+							<Icon name="hugeicons:instagram" size="24" />
+						</NuxtLink>
+						<NuxtLink
+							v-if="threadsLink"
+							:to="threadsLink.to"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-black hover:text-gray-600 transition-colors"
+							aria-label="Threads"
+						>
+							<Icon name="hugeicons:threads" size="24" />
+						</NuxtLink>
+					</div>
+					<div class="text-sm text-gray-500 mt-4">
+						© {{ new Date().getFullYear() }} Andrew Long
+					</div>
+				</div>
 			</div>
 		</Transition>
 	</div>
 </template>
 
 <script setup>
-import { ref, readonly } from 'vue';
+import { ref, readonly, computed } from 'vue';
 
 const props = defineProps({
 	navigationLinks: {
@@ -113,6 +136,20 @@ const props = defineProps({
 		required: true,
 	},
 });
+
+const internalLinks = computed(() =>
+	props.navigationLinks.filter((link) => !link.isExternal)
+);
+const instagramLink = computed(() =>
+	props.navigationLinks.find(
+		(link) => link.isExternal && link.label === 'Instagram'
+	)
+);
+const threadsLink = computed(() =>
+	props.navigationLinks.find(
+		(link) => link.isExternal && link.label === 'Threads'
+	)
+);
 
 const showMenu = ref(false);
 const openDropdown = ref(null);

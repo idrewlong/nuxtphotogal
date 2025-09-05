@@ -20,8 +20,8 @@ const componentMap = {
 	'core/paragraph': defineAsyncComponent(() => import('./Paragraph.vue')),
 	'core/heading': defineAsyncComponent(() => import('./Heading.vue')),
 	'core/image': defineAsyncComponent(() => import('./Image.vue')),
-	'core/embed': defineAsyncComponent(() => import('./YouTubeEmbed.vue')),
-	'core/gallery': defineAsyncComponent(() => import('./Gallery.vue')),
+	'core/embed': defineAsyncComponent(() => import('../YouTubeEmbed.vue')),
+	'core/gallery': defineAsyncComponent(() => import('../Gallery.vue')),
 	'core/list': defineAsyncComponent(() => import('./List.vue')),
 	// Add other block mappings here
 };

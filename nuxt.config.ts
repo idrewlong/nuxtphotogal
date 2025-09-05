@@ -43,6 +43,10 @@ export default defineNuxtConfig({
 		domains: ['cms.idrewfilm.com'],
 	},
 	fonts: {
+		families: [
+			{ name: 'Lato', provider: 'google' },
+			{ name: 'Bungee Hairline', provider: 'google' },
+		],
 		adobe: {
 			id: 'ozb2bpw',
 		},

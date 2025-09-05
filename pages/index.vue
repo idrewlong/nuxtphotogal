@@ -1,5 +1,7 @@
 <template>
-	<HorizontalGallery :photos="mockPhotos" />
+	<div class="h-screen">
+		<HomeGallery :photos="mockPhotos" />
+	</div>
 </template>
 
 <script setup>
