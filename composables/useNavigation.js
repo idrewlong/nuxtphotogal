@@ -24,7 +24,7 @@ export const useNavigation = () => {
 
 		const staticItems = [
 			{
-				to: 'https://www.instagram.com/idrewcreative/',
+				to: 'https://www.instagram.com/idrewfilm/',
 				label: 'Instagram',
 				children: [],
 				isExternal: true,
@@ -63,7 +63,7 @@ export const useNavigation = () => {
 		const middleIndex = Math.ceil(items.length / 2);
 		const staticItems = [
 			{
-				to: 'https://www.instagram.com/idrewcreative/',
+				to: 'https://www.instagram.com/idrewfilm/',
 				label: 'Instagram',
 				children: [],
 				isExternal: true,

@@ -1,22 +1,15 @@
 <template>
 	<header
-		class="header-fixed md:absolute md:top-0 md:left-0 md:right-0 md:z-50 md:bg-transparent bg-black border-b border-slate-200 md:border-b-0"
+		class="md:fixed top-0 left-0 h-screen w-64 bg-white border-r border-slate-200 z-50 p-4 px-6 flex-col"
 	>
-		<nav
-			class="p-4 px-6 mx-auto md:flex md:items-center relative"
-			aria-label="Main navigation"
-		>
-			<!-- Mobile Navigation -->
-			<NavigationMobileNav
-				ref="mobileNavRef"
-				:navigation-links="navigationLinks"
-			/>
+		<nav class="flex flex-col h-full" aria-label="Main navigation">
+			<NavigationLogo class="mb-8" />
 
-			<!-- Desktop Navigation -->
 			<NavigationDesktopNav
 				ref="desktopNavRef"
 				:left-nav-items="leftNavItems"
 				:right-nav-items="rightNavItems"
+				class="flex-grow"
 			/>
 		</nav>
 	</header>

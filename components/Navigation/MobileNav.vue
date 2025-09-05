@@ -1,34 +1,24 @@
 <template>
-	<div>
+	<div class="bg-white p-4 flex justify-between items-center">
 		<!-- Mobile Menu Toggle Button -->
-		<div class="flex items-center justify-between md:hidden">
-			<NavigationLogo
-				size="small"
-				container-class="flex items-center"
-				@click="closeNavbar"
+		<NavigationLogo
+			size="small"
+			container-class="flex items-center"
+			@click="closeNavbar"
+		/>
+		<button
+			type="button"
+			class="text-black focus:outline-none rounded"
+			:aria-expanded="showMenu"
+			aria-controls="main-navigation"
+			@click="toggleNavbar"
+		>
+			<Icon
+				:name="showMenu ? 'heroicons:x-mark' : 'heroicons:bars-3'"
+				class="menu-icon"
+				aria-hidden="true"
 			/>
-
-			<div class="flex items-center gap-3">
-				<button
-					type="button"
-					class="text-white hover:text-slate-300 focus:outline-none rounded transition-colors duration-300"
-					:aria-expanded="showMenu"
-					aria-controls="main-navigation"
-					@click="toggleNavbar"
-				>
-					<span class="sr-only">{{
-						showMenu ? 'Close menu' : 'Open menu'
-					}}</span>
-					<Icon
-						:name="showMenu ? 'heroicons:x-mark' : 'heroicons:bars-3'"
-						class="menu-icon transition-all duration-300"
-						:class="{ 'rotate-180': showMenu }"
-						aria-hidden="true"
-					/>
-				</button>
-			</div>
-		</div>
-
+		</button>
 		<!-- Side Drawer Mobile Menu -->
 		<Transition
 			enter-active-class="transition-transform duration-300 ease-out"
@@ -40,7 +30,7 @@
 		>
 			<div
 				v-show="showMenu"
-				class="fixed inset-y-0 left-0 w-3/4 max-w-xs bg-black/95 backdrop-blur-sm p-6 z-[101] rounded-r-2xl shadow-2xl flex flex-col space-y-6 md:hidden focus:outline-none"
+				class="fixed inset-y-0 left-0 w-full bg-white p-6 z-[101] flex flex-col space-y-6"
 				role="dialog"
 				aria-modal="true"
 				id="main-navigation"
@@ -53,7 +43,7 @@
 					/>
 					<button
 						type="button"
-						class="text-white/90 focus:outline-none rounded"
+						class="text-black focus:outline-none rounded"
 						@click="closeNavbar"
 						aria-label="Close menu"
 					>
@@ -65,9 +55,7 @@
 					<template v-for="link in navigationLinks" :key="link.to">
 						<template v-if="link.children && link.children.length > 0">
 							<button
-								class="flex items-center justify-between text-white/80 hover:text-white transition-colors duration-300 w-full py-2 text-lg"
-								:aria-expanded="openDropdown === link.label"
-								:aria-controls="`${link.label}-dropdown-mobile`"
+								class="flex items-center justify-between text-black w-full py-2 text-lg"
 								@click="toggleDropdown(link.label)"
 							>
 								{{ link.label }}
@@ -79,14 +67,13 @@
 							</button>
 							<div
 								v-show="openDropdown === link.label"
-								:id="`${link.label}-dropdown-mobile`"
 								class="pl-4 mt-2 space-y-2"
 							>
 								<NuxtLink
 									v-for="child in link.children"
 									:key="child.to"
 									:to="child.to"
-									class="block text-white/70 hover:text-white transition-colors duration-300 py-1"
+									class="block text-gray-600 hover:text-black py-1"
 									@click="closeNavbar"
 								>
 									{{ child.label }}
@@ -98,15 +85,14 @@
 							:to="link.to"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-300 py-2 text-lg"
+							class="flex items-center gap-2 text-black py-2 text-lg"
 						>
 							<Icon name="mdi:instagram" size="24" />
-							<!-- <span>{{ link.label }}</span> -->
 						</NuxtLink>
 						<NuxtLink
 							v-else
 							:to="link.to"
-							class="text-white/80 hover:text-white transition-colors duration-300 py-2 text-lg"
+							class="text-black py-2 text-lg"
 							@click="closeNavbar"
 						>
 							{{ link.label }}
@@ -114,23 +100,6 @@
 					</template>
 				</nav>
 			</div>
-		</Transition>
-
-		<!-- Backdrop -->
-		<Transition
-			enter-active-class="transition-opacity duration-200"
-			leave-active-class="transition-opacity duration-200"
-			enter-from-class="opacity-0"
-			enter-to-class="opacity-100"
-			leave-from-class="opacity-100"
-			leave-to-class="opacity-0"
-		>
-			<div
-				v-show="showMenu"
-				class="fixed inset-0 bg-black/50 z-[100] md:hidden"
-				@click="closeNavbar"
-				aria-hidden="true"
-			></div>
 		</Transition>
 	</div>
 </template>

@@ -5,7 +5,11 @@
 		aria-label="Go to homepage"
 		@click="$emit('click')"
 	>
-		<img src="/images/id2.svg" alt="ID Film Logo" :class="imageClass" />
+		<img
+			src="/images/black_id_film.svg"
+			alt="ID Film Logo"
+			:class="imageClass"
+		/>
 	</NuxtLink>
 </template>
 

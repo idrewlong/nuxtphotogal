@@ -3,7 +3,7 @@
 import tailwindcss from '@tailwindcss/vite';
 export default defineNuxtConfig({
 	compatibilityDate: '2025-08-22',
-	devtools: { enabled: true },
+	devtools: { enabled: false },
 	site: {
 		url:
 			process.env.NODE_ENV === 'production'
@@ -11,7 +11,6 @@ export default defineNuxtConfig({
 				: 'http://localhost:3000',
 		name: 'idrewfilm',
 		defaultLocale: 'en',
-		trailingSlash: true,
 	},
 	vite: {
 		plugins: [tailwindcss()],
@@ -21,6 +20,7 @@ export default defineNuxtConfig({
 			default: {
 				httpEndpoint:
 					process.env.GRAPHQL_ENDPOINT || 'https://cms.idrewfilm.com/graphql',
+				connectToDevTools: process.env.NODE_ENV === 'development',
 			},
 		},
 	},

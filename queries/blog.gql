@@ -1,0 +1,17 @@
+query GetBlogs {
+	posts(first: 10, where: { orderby: { field: DATE, order: DESC } }) {
+		nodes {
+			id
+			title
+			slug
+			date
+			excerpt
+			featuredImage {
+				node {
+					sourceUrl
+					altText
+				}
+			}
+		}
+	}
+}

@@ -14,7 +14,7 @@ useSeoMeta({
 		'Connect with Andrew Long, a software engineer specializing in full-stack development.',
 	twitterImage: '/images/contact-og.png',
 	robots: 'index, follow',
-	canonical: 'https://idrewlong.com/contact',
+	canonical: 'https://idrewfilm.com/contact',
 });
 
 // Form state management
@@ -41,6 +41,7 @@ const submitForm = async () => {
 				name: form.value.name,
 				email: form.value.email,
 				message: form.value.message,
+				site: 'idrewfilm.com',
 			},
 		});
 
