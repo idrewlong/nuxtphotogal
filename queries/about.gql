@@ -1,0 +1,15 @@
+query GetAboutPage {
+	page(id: "about", idType: URI) {
+		id
+		title
+		about {
+			aboutImage {
+				node {
+					sourceUrl
+					altText
+				}
+			}
+			aboutText
+		}
+	}
+}

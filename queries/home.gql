@@ -1,0 +1,60 @@
+query GetHomePage {
+	page(id: "home", idType: URI) {
+		id
+		title
+		home {
+			homeBox1 {
+				image {
+					node {
+						sourceUrl
+						altText
+					}
+				}
+				text {
+					title
+					url
+					target
+				}
+			}
+			homeBox2 {
+				image {
+					node {
+						sourceUrl
+						altText
+					}
+				}
+				text {
+					title
+					url
+					target
+				}
+			}
+			homeBox3 {
+				image {
+					node {
+						sourceUrl
+						altText
+					}
+				}
+				text {
+					title
+					url
+					target
+				}
+			}
+			homeBox4 {
+				image {
+					node {
+						sourceUrl
+						altText
+					}
+				}
+				text {
+					title
+					url
+					target
+				}
+			}
+		}
+	}
+}

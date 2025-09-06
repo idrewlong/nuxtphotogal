@@ -12,7 +12,7 @@
 				<div class="flex items-center justify-between">
 					<NuxtLink
 						:to="link.to"
-						class="text-black transition-all duration-300 py-2 text-lg uppercase"
+						class="text-black transition-all duration-300 py-2 text-sm uppercase"
 						:class="{
 							'font-bold': $route.path.startsWith(link.to),
 						}"
@@ -52,7 +52,7 @@
 							v-for="child in link.children"
 							:key="child.to"
 							:to="child.to"
-							class="block text-black hover:text-gray-600 transition-all duration-200 uppercase"
+							class="block text-black text-sm hover:text-gray-600 transition-all duration-200 uppercase"
 							role="menuitem"
 							@click="closeDropdown"
 						>
@@ -64,7 +64,7 @@
 			<NuxtLink
 				v-else
 				:to="link.to"
-				class="text-black transition-all duration-300 py-2 text-lg uppercase"
+				class="text-black transition-all duration-300 py-2 text-sm uppercase"
 				:class="{ 'font-bold': $route.path === link.to }"
 			>
 				{{ link.label }}

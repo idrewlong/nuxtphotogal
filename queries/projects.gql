@@ -1,0 +1,20 @@
+query GetProjectsPageChildren {
+	page(id: "projects", idType: URI) {
+		id
+		children {
+			nodes {
+				id
+				uri
+				... on Page {
+					title
+					featuredImage {
+						node {
+							sourceUrl
+							altText
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -58,7 +58,7 @@
 					<template v-for="link in internalLinks" :key="link.to">
 						<template v-if="link.children && link.children.length > 0">
 							<button
-								class="flex items-center justify-between text-black w-full py-2 text-lg"
+								class="flex items-center justify-between text-black w-full py-2 text-sm"
 								@click="toggleDropdown(link.label)"
 							>
 								{{ link.label }}
@@ -76,7 +76,7 @@
 									v-for="child in link.children"
 									:key="child.to"
 									:to="child.to"
-									class="block text-black py-1"
+									class="block text-black py-1 text-sm"
 									@click="closeNavbar"
 								>
 									{{ child.label }}
@@ -86,7 +86,7 @@
 						<NuxtLink
 							v-else
 							:to="link.to"
-							class="text-black py-2 text-lg"
+							class="text-black py-2 text-sm"
 							@click="closeNavbar"
 						>
 							{{ link.label }}
