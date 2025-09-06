@@ -1,7 +1,7 @@
 <template>
 	<div
 		ref="scrollContainer"
-		class="flex overflow-x-auto h-contain w-full scrollbar-hide py-8"
+		class="flex h-screen w-full overflow-x-auto py-4 scrollbar-hide md:py-8"
 		:class="{
 			'cursor-none': cursorSide,
 		}"
@@ -32,17 +32,17 @@
 				transform: 'translate(-50%, -50%)',
 			}"
 		/>
-		<div class="flex flex-nowrap pl-8">
+		<div class="flex h-full flex-nowrap pl-4 md:pl-8">
 			<div
 				v-for="(photo, index) in photos"
 				:key="index"
 				:ref="(el) => (imageRefs[index] = el)"
-				class="flex-shrink-0 h-full w-auto mr-8 pointer-events-none"
+				class="flex-shrink-0 mr-4 h-full w-auto pointer-events-none md:mr-8"
 			>
 				<img
 					:src="photo.url"
 					:alt="photo.title"
-					class="h-full w-auto object-cover"
+					class="h-full w-auto object-contain md:object-cover"
 				/>
 			</div>
 		</div>
@@ -120,7 +120,22 @@ const handleClick = () => {
 	}
 };
 
+const setGalleryHeight = () => {
+	if (scrollContainer.value) {
+		if (window.innerWidth < 768) {
+			// Tailwind's `md` breakpoint
+			const topOffset = scrollContainer.value.getBoundingClientRect().top;
+			scrollContainer.value.style.height = `calc(100vh - ${topOffset}px)`;
+		} else {
+			scrollContainer.value.style.height = ''; // Remove inline style, use class-based height
+		}
+	}
+};
+
 onMounted(() => {
+	setGalleryHeight();
+	window.addEventListener('resize', setGalleryHeight);
+
 	const container = scrollContainer.value;
 	if (container) {
 		wheelHandler = (event) => {
@@ -132,6 +147,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+	window.removeEventListener('resize', setGalleryHeight);
 	const container = scrollContainer.value;
 	if (container && wheelHandler) {
 		container.removeEventListener('wheel', wheelHandler);

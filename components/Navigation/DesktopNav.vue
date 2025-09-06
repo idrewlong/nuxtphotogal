@@ -23,14 +23,14 @@
 						class="flex items-center text-black"
 						@click="toggleDropdown(link.label)"
 						aria-haspopup="menu"
-						:aria-expanded="openDropdown === link.label"
+						:aria-expanded="openDropdown === link.label || isChildActive(link)"
 						:aria-controls="submenuId(link.label)"
 					>
 						<Icon
 							name="heroicons:chevron-right"
 							class="w-4 h-4 transition-transform duration-300"
 							:class="{
-								'rotate-90': openDropdown === link.label,
+								'rotate-90': openDropdown === link.label || isChildActive(link),
 							}"
 						/>
 					</button>
@@ -42,7 +42,7 @@
 					@leave="onLeave"
 				>
 					<div
-						v-show="openDropdown === link.label"
+						v-show="openDropdown === link.label || isChildActive(link)"
 						class="pl-4 mt-2 space-y-2"
 						role="menu"
 						:aria-label="`${link.label} submenu`"
@@ -53,6 +53,7 @@
 							:key="child.to"
 							:to="child.to"
 							class="block text-black text-sm hover:text-gray-600 transition-all duration-200 uppercase"
+							:class="{ 'font-bold': $route.path === child.to }"
 							role="menuitem"
 							@click="closeDropdown"
 						>
@@ -112,6 +113,12 @@ const props = defineProps({
 		required: true,
 	},
 });
+
+const route = useRoute();
+
+const isChildActive = (link) => {
+	return link.children?.some((child) => route.path === child.to);
+};
 
 const allNavItems = computed(() => {
 	const rightItems = props.rightNavItems.filter((item) => !item.isExternal);

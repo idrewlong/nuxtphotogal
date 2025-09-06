@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="md:fixed top-0 left-0 h-screen w-64 bg-white border-r border-slate-200 z-50 p-4 px-6 flex-col"
+		class="md:fixed top-0 left-0 h-screen w-64 bg-white shadow-sm z-50 p-4 px-6 flex-col"
 	>
 		<nav class="flex flex-col h-full" aria-label="Main navigation">
 			<NavigationLogo class="mb-8" />
